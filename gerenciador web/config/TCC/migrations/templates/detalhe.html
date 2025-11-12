@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang = "pt-br">
+    <head>
+
+        {%load static %}
+        <meta charset = "UTF- 8">
+        <title>{{ atividade.curso}}</title>
+        <link rel="stylesheet"href = "{% static 'detalhe/detalhe.css' %}">
+    </head>
+    <body>
+
+        <h1>{{ atividade.curso}}</h1>
+        <p><strong>descrição: </strong>{{ atividade.descricao|linebreaks}}</p>
+        <p><strong>Status:</strong>{% if atividade.concluida %} concluído{% else%} pendente{% endif %}</p>
+        <small>Criada em : {{tarefa.data_inicio}}</small>
+
+        <hr>
+        <a href="{% url 'alterar_atividade' atividade.id %}">Alterar atividade</a>|
+        <a href="{% url 'lista_atividade' %}">Voltar para Listar</a>
+        <a href="{% url 'excluir_atividade' atividade.id %}">Excluir atividade</a>
+        
+    </body>
+</html>

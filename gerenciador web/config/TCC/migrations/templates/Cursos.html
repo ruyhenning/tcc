@@ -1,0 +1,24 @@
+<!DOCTYPE html> 
+<html lang="pt-br"> 
+<head> 
+    {% load static %}
+    <meta charset="UTF-8"> 
+    <title>Minha Lista de atividadade</title> 
+    <link rel="stylesheet" href="{% static 'lista/lista.css' %}">
+</head> 
+<body> 
+    <h1>Gerenciador de atividade Web</h1> 
+    <a href="{% url 'adicionar_atividade' %}"><strong>+ Adicionar Nova atividade</strong></a> 
+    <hr> 
+    {% for atividade in minhas_atividade %} 
+        <div class="atividade {% if atividade.concluida %}concluida{% endif %}"> 
+            <h2><a href="{% url 'detalhe_atividade' atividade.id %}">{{ atividade.curso }}</a></h2>            
+            <p>{{ atividade.descricao }}</p> 
+            <p>Projeto :{{atividade.Ead.nome}}</p>
+            <small>Criada em: {{ atividade.data_inicio }}</small> 
+        </div> 
+    {% empty %} 
+        <p>Nenhuma atividade cadastrada ainda. Adicione algumas no <a href="/admin/">Admin</a>!</p> 
+    {% endfor %} 
+</body> 
+</html>
