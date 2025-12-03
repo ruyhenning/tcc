@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meus Cursos</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Meus Cursos</h1>
+    <a href="{% url 'criar_curso' %}" class="btn btn-add">+ Adicionar Novo Curso</a>
+
+    <ul class="curso-grid">
+        {% for curso in meus_cursos %}
+            <li class="curso-card">
+                <div>
+                    <strong class="curso-titulo">{{ curso.nome }}</strong>
+                    <div class="curso-info">
+                        Nível: {{ curso.get_nivel_display }} <br>
+                        Carga Horária: {{ curso.carga_horaria }}h
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
+                    <a href="{% url 'editar_curso' curso.id %}" class="btn btn-edit">Editar</a>
+                    <a href="{% url 'excluir_curso' curso.id %}" class="btn btn-delete">Excluir</a>
+                </div>
+            </li>
+        {% empty %}
+            <li style="text-align: center; grid-column: 1/-1; padding: 40px; color: #7f8c8d;">
+                Nenhum curso encontrado. Comece por criar um!
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>

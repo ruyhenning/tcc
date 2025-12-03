@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerir Curso</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Preencher Curso</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-save">Salvar Curso</button>
+    </form>
+
+    <div style="text-align: center;">
+        <a href="{% url 'lista_cursos' %}" class="btn btn-back">Voltar para a Lista</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -16,11 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# Importamos a função redirect
+from django.shortcuts import redirect 
 
+# Função simples para redirecionar a Home para a lista de Cursos
+def redirecionar_para_cursos(request):
+    return redirect('lista_cursos')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cursos/',include('cursos.urls')),
-    path('aulas/',include('aulas.urls')),
-    path('modulos/',include('modulos.urls')),
+    
+    path('cursos/', include('cursos.urls')),
+    path('aulas/', include('aulas.urls')),
+    path('modulos/', include('modulos.urls')),
+    
+    # Rota vazia '' -> Chama a função que envia para os cursos
+    path('', redirecionar_para_cursos), 
 ]
